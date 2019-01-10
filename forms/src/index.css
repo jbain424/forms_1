@@ -1,0 +1,43 @@
+
+body {
+  background-image: url("https://wallpapercave.com/wp/wp2305557.jpg");
+  background-repeat: no-repeat;
+  background-color: #000000;
+  background-size: 100%;
+  margin-left: 15px;
+  color: white;
+  }
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Dosis";
+}
+
+input, select {
+  width: 150px;
+}
+
+textarea {
+  width: 230px;
+}
+
+button {
+  margin-top: 10px;
+  width: 75px;
+}
+
+#pageConfirm {
+  text-align: center;
+  margin-top: 200px;
+  color: white
+}
+
+.formSubmit {
+  white-space: pre;
+  color: white;
+}
