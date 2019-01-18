@@ -1,5 +1,7 @@
 import React from 'react';
-const countries = require('./Countries.json');
+import Radio from "./Radio.js";
+import Selects from "./Selects.js";
+import Checkbox from "./Checkboxes.js"
 
 
 class Form extends React.Component {
@@ -11,11 +13,19 @@ class Form extends React.Component {
       diet: "",
       country: "",
       formCompleted: false,
-      formSubmitted: false
+      formSubmitted: false,
+      underwater: "",
+      marital_status: "",
+      stress_level: "",
+      claustrophobic: "",
+      siblings: false,
+      parents: false,
+      grandparents: false
     }
   }
 
   handleChange = (event) => {
+    debugger
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -28,7 +38,6 @@ class Form extends React.Component {
     })
   }
 
-
   handleConfirm = (event) => {
     event.preventDefault()
     this.setState({
@@ -37,57 +46,67 @@ class Form extends React.Component {
   }
 
   render() {
-    const { name, birthday, reason, diet, formCompleted, formSubmitted, country } = this.state
+    const { name,  reason, formCompleted, formSubmitted, diet, country, birthday } = this.state
+
     if(!formSubmitted) {
     return (
         <>
         <h1>Mission to Mars Registration Form</h1>
           <div>
-
             <form className="form" onChange={this.handleChange}>
-              <label htmlFor="name" >Name</label>
-              <input name="name" type="text" placeholder="Full Name" value={name} id="name"/>
-              <label htmlFor="DOB"> Date Of Birth: </label>
-              <input type="date" id="dob" name="birthday" value={birthday} min="1900-01-01" max="2019-01-31" />
 
-              <label htmlFor="Country">Country</label>
-              <select name="country">
-              {["", ...countries].map(country => (
-                <option value={country.name}>{country.name}</option>
-              ))}
-              </select>
+            <label htmlFor="name"> Name <abbr title="required"></abbr></label>
 
-              <label htmlFor="dietary">What do you want to eat?</label>
-              <select name="diet" value={diet}>
-                <option value="omnivore">Omnivore</option>
-                <option value="vegeterian">Vegetarian</option>
-                <option value="vegan">Vegan</option>
-              </select>
+            <input name="name" type="text" placeholder="Full Name" value={name} id="name"/>
+            <br />
 
-              <label htmlFor="yourReason">Why do want to be a Mars Explorer?</label>
-              <textarea rows='5' cols='25' wrap='soft' overflow='scroll'  name="reason" placeholder="explain why we should select you!" type="text" id="reason" value={reason} />
+              <Selects handleSelect={this.handleChange}
+                birthday={this.state.birthday}
+                diet={this.state.diet}
+                country={this.state.country}
+              />
+
+
+          <label htmlFor="yourReason">Why do you want to be a Mars Explorer?</label>
+          <br />
+
+              <textarea rows='5' cols='25' wrap='soft' overflow='scroll'  name="reason" placeholder="Explain why we should select you!" type="text" id="reason" value={reason} />
+
+
+              <Radio handleRadioChange={this.handleChange}
+                underwater={this.state.underwater}
+                marital_status={this.state.marital_status}
+                stress_level={this.state.stress_level}
+                claustrophobic={this.state.claustrophobic}
+              />
+
+              <Checkbox handleCheckboxChange={this.handleChange}
+                siblings={this.state.siblings}
+                parents={this.state.parents}
+                grandparents={this.state.grandparents}
+              />
 
                 <button onClick={this.handleSubmit}>Submit</button>
+
                 <div className="formSubmit">
-                  <ul>{formCompleted ? `
-                  Your name: ${name}
-                  DOB: ${birthday}
-                  Diet: ${diet}
-                  Reason: ${reason}
-                  Country: ${country}
-                  Are You Ready To Apply?` : ""}</ul>
+                    <p>{formCompleted ? `
+                    Your name: ${name}
+                    DOB: ${birthday}
+                    Diet: ${diet}
+                    Reason: ${reason}
+                    Country: ${country}
+                    is the information correct?` : ""}</p>
                 </div>
               </form>
             </div>
 
-            <button onClick={this.handleConfirm}>Confirm</button>
-
+            {formCompleted ? <button onClick={this.handleConfirm}>Confirm</button> : ""}
             </>
           )
         } else {
           return (
             <>
-              <p id="pageConfirm">You have successfully submitted the application! Welcome to Mars!</p>
+              <p id="pageConfirm">You have successfully submitted the application!</p>
             </>
           )
         }

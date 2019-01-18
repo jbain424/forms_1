@@ -1,43 +1,29 @@
-
 body {
-  background-image: url("https://wallpapercave.com/wp/wp2305557.jpg");
+  background-image: url("http://avante.biz/wp-content/uploads/Astronomy-Photographer-2018-wallpapers/Astronomy-Photographer-2018-wallpapers59.jpg");
   background-repeat: no-repeat;
   background-color: #000000;
   background-size: 100%;
-  margin-left: 15px;
-  color: white;
+  padding-left: 200px;
+  padding-right: 200px;
+
   }
 
-.form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  h1 {
+    text-align: center;
+    color: white;
+  }
 
-h1 {
-  font-family: "Dosis";
-}
+  .radiobutton, .form, .checkboxes, .selects {
+    background-color: #8cd8d3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 
-input, select {
-  width: 150px;
-}
+  }
 
-textarea {
-  width: 230px;
-}
-
-button {
-  margin-top: 10px;
-  width: 75px;
-}
-
-#pageConfirm {
-  text-align: center;
-  margin-top: 200px;
-  color: white
-}
-
-.formSubmit {
-  white-space: pre;
-  color: white;
-}
+  p {
+    text-align: center;
+    color: white;
+    padding-top: 200px;
+    
+  }
